@@ -1,6 +1,9 @@
 {
     "dev_stats" : {
-        "spaces_noted" : "2"
+        "spaces_listed" : "2",
+        "spaces_complete" : "0",
+        "spaces_detailed" : "0",
+        "spaces_basic" : "0"
     },
     "user_stats" : {
         "web_visits" : "0"
