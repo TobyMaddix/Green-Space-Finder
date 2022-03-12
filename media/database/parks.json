@@ -1,0 +1,29 @@
+{
+    "Green Space" : [
+        {
+            "name" : "Castle Park",
+            "longitude" : "-2.5872646",
+            "latitude" : "51.4557259",
+
+            "infoFile" : "",
+            "imageFile" : "",
+            "links" : [],
+
+            "services" : [],
+            "nearby" : []
+
+        },
+        {
+            "name" : "Queen Square",
+            "longitude" : "-2.5934414",
+            "latitude" : "51.4504526",
+
+            "infoFile" : "",
+            "imageFile" : "",
+            "links" : [],
+
+            "services" : [],
+            "nearby" : []
+        }
+    ]
+}

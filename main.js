@@ -1,20 +1,27 @@
 $(document).ready(function(){
     $("#searchField").one("click", function(){
         if(navigator.geolocation) {
-            var position;
+            $("#searchField").val("");
             navigator.geolocation.getCurrentPosition(postcode);
         }
 
         function postcode(position) {
             const latlongUrl = "https://api.postcodes.io/postcodes?lon=" + position.coords.longitude + "&lat=" + position.coords.latitude;
             $.getJSON(latlongUrl, function(data) {
-                $("#searchField").val(data.result[1].postcode);
-                console.log(data.result.postcode);
+                console.log(data);
+                if(data.responce = 200) {
+                    console.log("SUCCESS! " + data.status);
+                    console.log(data.result[1].postcode);
+                    $("#searchField").val(data.result[1].postcode);
+                } else {
+                    console.log("ERROR! " + data.status);
+                }
+
             });
         }
     });
 
-    $("#searchButton").click(function(){
+    function find() {
         var postcode = $("#searchField").val();
         var location;
     
@@ -54,5 +61,16 @@ $(document).ready(function(){
                 console.log("ERROR! " + location.status);
             }
         });
+    }
+
+    $("#searchButton").click(function(){
+        find();
     });
+
+    $('#searchField').keypress(function(event){
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if(keycode == '13'){
+            find();
+        }
+      });
 });

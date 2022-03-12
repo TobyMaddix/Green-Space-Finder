@@ -163,6 +163,11 @@ body {
     margin: 0;
 
     background-color: rgba(20, 20, 20, 1);
+    background-image: url(../media/images/background-image.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 #navCont {
@@ -184,15 +189,13 @@ body {
 
     border-radius: 0.75em;
 
-    background-color: rgba(0, 0, 0, 1);
+    background-color: rgba(0, 0, 0, 0.75);
 }
 
 .mainRow {
     width: 100%;
     padding-bottom: 2.5%;
     padding-top: 2.5%;
-
-    margin: 0;
 
     display: flex;
 }
@@ -214,7 +217,7 @@ body {
     margin-right: 2.5%;
     padding: 1.25%;
 
-    background-color: rgba(20, 20, 20, 1);
+    background-color: rgba(0, 0, 0, 1);
 
     border-radius: 0.75em;
 }
