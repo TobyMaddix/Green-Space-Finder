@@ -165,13 +165,6 @@ body {
     background-color: rgba(20, 20, 20, 1);
 }
 
-#main {
-    width: 90%;
-    margin-left: 5%;
-
-    background-color: rgba(50, 75, 40, 1);
-}
-
 #navCont {
     width: 100%;
     float: left;
@@ -182,7 +175,48 @@ body {
 #navTitle {
     margin-left: 5%;
 
-    color: rgba(70, 95, 60, 1);
+    color: rgba(70, 115, 60, 1);
+}
+
+#main {
+    width: 90%;
+    margin-left: 5%;
+
+    border-radius: 0.75em;
+
+    background-color: rgba(0, 0, 0, 1);
+}
+
+.mainRow {
+    width: 100%;
+    padding-bottom: 2.5%;
+    padding-top: 2.5%;
+
+    margin: 0;
+
+    display: flex;
+}
+
+.mainColHighlight {
+    width: 100%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    padding: 1.25%;
+
+    background-color: rgba(70, 115, 60, 1);
+
+    border-radius: 0.75em;
+}
+
+.mainColLowlight {
+    width: 100%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    padding: 1.25%;
+
+    background-color: rgba(20, 20, 20, 1);
+
+    border-radius: 0.75em;
 }
 
 #searchCont {
@@ -192,19 +226,21 @@ body {
 
 #searchField {
     width: 100%;
+    height: 3em;
     margin: 1%;
 
     padding: 0.5em;
-    background-color: rgba(40, 40, 40, 1);
-    color: white;
+    background-color: rgba(250, 250, 250, 1);
+    color: rgba(20, 20, 20, 1);
 
     border: 1px solid;
-    border-color: rgba(250, 250, 250, 1);
-    border-radius: 0.5em;
+    border-color: rgba(20, 20, 20, 1);
+    border-radius: 1em;
 }
 
 #searchButton {
     width: auto;
+    height: 3em;
     margin: 1%;
     margin-left: 0;
 
@@ -215,6 +251,6 @@ body {
     font-weight: 400;
 
     border: 1px solid;
-    border-color: rgba(40, 40, 40, 1);
-    border-radius: 0.5em;
+    border-color: rgba(20, 20, 20, 1);
+    border-radius: 1em;
 }
