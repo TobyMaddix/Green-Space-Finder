@@ -36,6 +36,30 @@
 
             "services" : [],
             "nearby" : []
+        },
+        {
+            "name" : "St James Park",
+            "longitude" : "-2.5925999",
+            "latitude" : "51.4583081",
+
+            "infoFile" : "",
+            "imageFile" : "",
+            "links" : [],
+
+            "services" : [],
+            "nearby" : []
+        },
+        {
+            "name" : "Frome Park",
+            "longitude" : "-2.5954086",
+            "latitude" : "51.4566302",
+
+            "infoFile" : "",
+            "imageFile" : "",
+            "links" : [],
+
+            "services" : [],
+            "nearby" : []
         }
     ]
 }

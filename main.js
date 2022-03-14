@@ -1,4 +1,11 @@
+const devMode = true;
+
 $(document).ready(function(){
+    if(devMode) {
+        $("#searchField").val("BS16XN");
+        getSpaces();
+    }
+
 
     function getStats(statsData) {
         $.getJSON(statsData, function(data){
@@ -40,13 +47,27 @@ $(document).ready(function(){
     }
 
     //add a new article to the new section
-    function mainSectionArticle_display(name, latitude, longitude, id, size) {
+    function mainSectionArticle_display(name, latitude, longitude, distance, id, size) {
         var eSection = document.getElementById("spacesList");
         if (eSection == null) {$("#main").append("<div class='mainSection' id='spacesList'></div>");}
         $("#spacesList").append("<div class='mainSectionArticle' id='spacesListArticle" + id + "' style='flex-grow:" + size + "'></div>");
         $("#spacesListArticle" + id).append("<p>" + name + "</p>");
         $("#spacesListArticle" + id).append("<p>" + latitude + "</p>");
         $("#spacesListArticle" + id).append("<p>" + longitude + "</p>");
+        $("#spacesListArticle" + id).append("<p>" + distance + "</p>");
+    }
+
+    function getDistance(n1, n2, n3, n4) {
+        function makePosative(n) {
+            if(n < 0) {var num1 = n - (n * 2);} else {var num1 = n;}
+            return num1;
+        }
+
+        var num1 = makePosative(n1);
+        var num2 = makePosative(n2);
+        var num3 = makePosative(n3);
+        var num4 = makePosative(n4);
+        return Math.sqrt((num1-num3) * (num1-num3) + (num2-num4) * (num2-num4));
     }
 
     function getSpaces() {
@@ -66,14 +87,14 @@ $(document).ready(function(){
 
             //print out all db results
             mainSection_clear();
-            mainSectionArticle_display(postcodeData.result.postcode, postcodeData.result.longitude, postcodeData.result.latitude, 0, 1);
+            mainSectionArticle_display(postcodeData.result.postcode, postcodeData.result.longitude, postcodeData.result.latitude, 0, 0, 1);
             $("#spacesList").append("<div class='mainSectionBreak'></div>");
             $.getJSON("media/database/space.json", function(spaceData){
                 console.log(spaceData);
                 console.log("SUCCESS!");
                 for(var i = 0; spaceData.green_space.length > i; i++) {
-                    console.log(i);
-                    mainSectionArticle_display(spaceData.green_space[i].name, spaceData.green_space[i].longitude, spaceData.green_space[i].latitude, i+1, 1);
+                    getDistance(postcodeData.result.longitude, postcodeData.result.latitude, spaceData.green_space[i].longitude, spaceData.green_space[i].latitude);
+                    mainSectionArticle_display(spaceData.green_space[i].name, spaceData.green_space[i].longitude, spaceData.green_space[i].latitude, getDistance(postcodeData.result.longitude, postcodeData.result.latitude, spaceData.green_space[i].longitude, spaceData.green_space[i].latitude), i+1, 1);
                 }
             }).fail(function(){
                 console.log(spaceData);
