@@ -1,5 +1,5 @@
 {
-    "Green Space" : [
+    "green_space" : [
         {
             "name" : "Castle Park",
             "longitude" : "-2.5872646",
@@ -17,6 +17,18 @@
             "name" : "Queen Square",
             "longitude" : "-2.5934414",
             "latitude" : "51.4504526",
+
+            "infoFile" : "",
+            "imageFile" : "",
+            "links" : [],
+
+            "services" : [],
+            "nearby" : []
+        },
+        {
+            "name" : "College Green",
+            "longitude" : "-2.6004994",
+            "latitude" : "51.452319",
 
             "infoFile" : "",
             "imageFile" : "",
