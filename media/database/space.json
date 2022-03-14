@@ -60,6 +60,54 @@
 
             "services" : [],
             "nearby" : []
+        },
+        {
+            "name" : "St Mary Redcliffe",
+            "longitude" : "-2.5895861",
+            "latitude" : "51.4479312",
+
+            "infoFile" : "",
+            "imageFile" : "",
+            "links" : [],
+
+            "services" : [],
+            "nearby" : []
+        },
+        {
+            "name" : "Temple Gardens",
+            "longitude" : "-2.5860931",
+            "latitude" : "51.451596",
+
+            "infoFile" : "",
+            "imageFile" : "",
+            "links" : [],
+
+            "services" : [],
+            "nearby" : []
+        },
+        {
+            "name" : "Quaker Burial Ground",
+            "longitude" : "-2.5910146",
+            "latitude" : "51.4487011",
+
+            "infoFile" : "",
+            "imageFile" : "",
+            "links" : [],
+
+            "services" : [],
+            "nearby" : []
+        },
+        {
+            "name" : "Welsh Back Place",
+            "longitude" : "-2.5924819",
+            "latitude" : "51.453317",
+
+            "infoFile" : "",
+            "imageFile" : "",
+            "links" : [],
+
+            "services" : [],
+            "nearby" : []
         }
     ]
 }

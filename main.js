@@ -2,7 +2,7 @@ const devMode = true;
 
 $(document).ready(function(){
     if(devMode) {
-        $("#searchField").val("BS16XN");
+        $("#searchField").val("BS16NE");
         getSpaces();
     }
 
@@ -20,7 +20,7 @@ $(document).ready(function(){
 
 
     function getPostcode(position) {
-        const latlongUrl = "https://api.postcodes.io/postcodes?lon=" + position.coords.longitude + "&lat=" + position.coords.latitude;
+        const latlongUrl = "https://api.postcodes.io/postcodes?lon=" + position.coords.longitude + "&lat=" + position.coords.latitude; //find nearest postcode to estimated position
 
         $.getJSON(latlongUrl, function(data) {
             console.log(data);
@@ -63,11 +63,17 @@ $(document).ready(function(){
             return num1;
         }
 
+        //implement better checks on negatives and distance
         var num1 = makePosative(n1);
         var num2 = makePosative(n2);
         var num3 = makePosative(n3);
         var num4 = makePosative(n4);
         return Math.sqrt((num1-num3) * (num1-num3) + (num2-num4) * (num2-num4));
+    }
+
+    function getTime(distance, method) {
+        mode = {walk:"7", bike:"2"};
+        return distance % 0.1 * 7;
     }
 
     function getSpaces() {
@@ -82,19 +88,24 @@ $(document).ready(function(){
             console.log(postcodeData.result.longitude);
             console.log(postcodeData.result.latitude);
 
-            //animate to default colors if success
-            $("#searchField").css({"background-color":"rgba(250,250,250,1)", "color":"rgba(80, 80, 80, 1)"});
+            $("#searchField").css({"background-color":"rgba(250,250,250,1)", "color":"rgba(80, 80, 80, 1)"}); //animate to default colors if success
 
-            //print out all db results
             mainSection_clear();
             mainSectionArticle_display(postcodeData.result.postcode, postcodeData.result.longitude, postcodeData.result.latitude, 0, 0, 1);
             $("#spacesList").append("<div class='mainSectionBreak'></div>");
+
             $.getJSON("media/database/space.json", function(spaceData){
                 console.log(spaceData);
                 console.log("SUCCESS!");
+
+                //run through the green space data base
                 for(var i = 0; spaceData.green_space.length > i; i++) {
-                    getDistance(postcodeData.result.longitude, postcodeData.result.latitude, spaceData.green_space[i].longitude, spaceData.green_space[i].latitude);
-                    mainSectionArticle_display(spaceData.green_space[i].name, spaceData.green_space[i].longitude, spaceData.green_space[i].latitude, getDistance(postcodeData.result.longitude, postcodeData.result.latitude, spaceData.green_space[i].longitude, spaceData.green_space[i].latitude), i+1, 1);
+
+                    //don't show if distance out of range
+                    if(getDistance(postcodeData.result.longitude, postcodeData.result.latitude, spaceData.green_space[i].longitude, spaceData.green_space[i].latitude) < 0.01){
+                        //console.log(getTime(getDistance(postcodeData.result.longitude, postcodeData.result.latitude, spaceData.green_space[i].longitude, spaceData.green_space[i].latitude), "walk"));
+                        mainSectionArticle_display(spaceData.green_space[i].name, spaceData.green_space[i].longitude, spaceData.green_space[i].latitude, getDistance(postcodeData.result.longitude, postcodeData.result.latitude, spaceData.green_space[i].longitude, spaceData.green_space[i].latitude), i+1, 1);
+                    }
                 }
             }).fail(function(){
                 console.log(spaceData);
@@ -104,8 +115,7 @@ $(document).ready(function(){
             console.log(postcodeData);
             console.log("ERROR! " + postcodeData.status);
 
-            //animate color change to show fail
-            $("#searchField").css({"background-color":"rgba(200,40,20,1)", "color":"white"});
+            $("#searchField").css({"background-color":"rgba(200,60,40,1)", "color":"white"}); //animate color change to show fail
             mainSection_clear();
         });
     }
