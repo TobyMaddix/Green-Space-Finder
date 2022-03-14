@@ -35,10 +35,8 @@ $(document).ready(function(){
 
     
     //remove any content from main
-    function clearMain() {
-        for(var i = 1; $("#main").length+1 >= i; i++){
-            $("#mainRow" + i).remove();
-        }
+    function clearMainSection() {
+        $("#spacesList").remove();
     }
 
     function getSpaces() {
@@ -56,29 +54,28 @@ $(document).ready(function(){
             //animate to default colors if success
             $("#searchField").css({"background-color":"rgba(250,250,250,1)", "color":"rgba(80, 80, 80, 1)"});
 
-            function displayResult(name, latitude, longitude, row, col) {
-                var eRow = document.getElementById("mainRow" + row);
-                if (eRow == null) {$("#main").append("<div class='mainRow' id='mainRow" + row + "'></div>");}
-                var eCol = document.getElementById("mainRow" + row + "Col" + col);
-                if (eCol == null) {$("#mainRow" + row).append("<div class='mainColLowlight' id='mainRow" + row + "Col" + col + "'></div>");}
-                $("#mainRow" + row + "Col" + col).append("<p>" + name + "</p>");
-                $("#mainRow" + row + "Col" + col).append("<p>" + latitude + "</p>");
-                $("#mainRow" + row + "Col" + col).append("<p>" + longitude + "</p>");
+            function displayResult(name, latitude, longitude, id) {
+                var eSection = document.getElementById("spacesList");
+                if (eSection == null) {$("#main").append("<div class='mainSection' id='spacesList'></div>");}
+                $("#spacesList").append("<div class='mainSectionArticle' id='spacesListArticle" + id + "'></div>");
+                $("#spacesListArticle" + id).append("<p>" + name + "</p>");
+                $("#spacesListArticle" + id).append("<p>" + latitude + "</p>");
+                $("#spacesListArticle" + id).append("<p>" + longitude + "</p>");
             }
             
-            clearMain();
-            displayResult(data.result.postcode, data.result.longitude, data.result.latitude, 1, 1);
-            displayResult(data.result.postcode, data.result.longitude, data.result.latitude, 1, 2);
-            displayResult(data.result.postcode, data.result.longitude, data.result.latitude, 2, 1);
-            displayResult(data.result.postcode, data.result.longitude, data.result.latitude, 2, 2);
-            displayResult(data.result.postcode, data.result.longitude, data.result.latitude, 2, 3);
+            clearMainSection();
+            displayResult(data.result.postcode, data.result.longitude, data.result.latitude, 1);
+            displayResult(data.result.postcode, data.result.longitude, data.result.latitude, 2);
+            displayResult(data.result.postcode, data.result.longitude, data.result.latitude, 3);
+            displayResult(data.result.postcode, data.result.longitude, data.result.latitude, 4);
+            displayResult(data.result.postcode, data.result.longitude, data.result.latitude, 5);
         }).fail(function(data){ 
             console.log(data);
             console.log("ERROR! " + data.status);
 
             //animate color change to show fail
             $("#searchField").css({"background-color":"rgba(200,40,20,1)", "color":"white"});
-            clearMain();
+            clearMainSection();
         });
     }
 
