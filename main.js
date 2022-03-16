@@ -92,19 +92,34 @@ $(document).ready(function(){
 
             mainSection_clear();
             mainSectionArticle_display(postcodeData.result.postcode, postcodeData.result.longitude, postcodeData.result.latitude, 0, 0, 1);
-            $("#spacesList").append("<div class='mainSectionBreak'></div>");
 
             $.getJSON("media/database/space.json", function(spaceData){
                 console.log(spaceData);
                 console.log("SUCCESS!");
 
+                var displayOrder = []
+                var nodeItem;
+                var nodeDist;
+                var distance;
+                var sectionBreak = false;
                 //run through the green space data base
-                for(var i = 0; spaceData.green_space.length > i; i++) {
+                for(var display = 0; 5 > display; display++) {
+                    var nodeItem = 0;
+                    var nodeDist = getDistance(postcodeData.result.longitude, postcodeData.result.latitude, spaceData.green_space[0].longitude, spaceData.green_space[0].latitude);
+                    for(var i = 0; spaceData.green_space.length > i; i++) {
+                        distance = getDistance(postcodeData.result.longitude, postcodeData.result.latitude, spaceData.green_space[i].longitude, spaceData.green_space[i].latitude);
 
-                    //don't show if distance out of range
-                    if(getDistance(postcodeData.result.longitude, postcodeData.result.latitude, spaceData.green_space[i].longitude, spaceData.green_space[i].latitude) < 0.01){
-                        //console.log(getTime(getDistance(postcodeData.result.longitude, postcodeData.result.latitude, spaceData.green_space[i].longitude, spaceData.green_space[i].latitude), "walk"));
-                        mainSectionArticle_display(spaceData.green_space[i].name, spaceData.green_space[i].longitude, spaceData.green_space[i].latitude, getDistance(postcodeData.result.longitude, postcodeData.result.latitude, spaceData.green_space[i].longitude, spaceData.green_space[i].latitude), i+1, 1);
+                        //don't show if distance out of range
+                        if(distance < 0.01 && distance < nodeDist && displayOrder.includes(i) == false){
+                            console.log(displayOrder.includes(i) == false);
+                            nodeItem = i; 
+                            nodeDist = distance;
+                        }
+                    }
+                    if(distance < 0.01){
+                        displayOrder.push(nodeItem);
+                        if(sectionBreak == false) {$("#spacesList").append("<div class='mainSectionBreak'></div>"); sectionBreak = true;}
+                        mainSectionArticle_display(spaceData.green_space[nodeItem].name, spaceData.green_space[nodeItem].longitude, spaceData.green_space[nodeItem].latitude, nodeDist, display+1, 1);
                     }
                 }
             }).fail(function(){
