@@ -57,17 +57,17 @@ $(document).ready(function(){
         if(data.imageFile || data.links || data.latitude || data.longitude || distance){
             $("#spacesListArticle" + id).append("<div id='spacesListArticle" + id + "Content' style='display:flex; flex-wrap:nowrap; gap:1vw;'></div>");
 
-            if(data.imageFile || data.links) {
+            if(data.imageFile || data.links || distance) {
                 $("#spacesListArticle" + id + "Content").append("<div id='spacesListArticle" + id + "ContentLeft' style='flex-basis: 50%;'></div>");
-                if(data.imageFile){$("#spacesListArticle" + id + "ContentLeft").append("<img src='" + data.imageFile + "' style='max-width:100%;'>");}
+                if(data.imageFile){$("#spacesListArticle" + id + "ContentLeft").append("<img src='" + data.imageFile + "' style='width:100%;'>");}
+                if(distance){$("#spacesListArticle" + id + "ContentLeft").append("<p>" + distance + "</p>");}
                 if(data.links){$("#spacesListArticle" + id + "ContentLeft").append("<p>" + data.links + "</p>");}
             }
 
-            if(data.latitude || data.longitude || distance) {
+            if(data.latitude || data.longitude) {
                 $("#spacesListArticle" + id + "Content").append("<div id='spacesListArticle" + id + "ContentRight' style='flex-basis: 50%;'></div>");
                 if(data.latitude){$("#spacesListArticle" + id + "ContentRight").append("<p>" + data.latitude + "</p>");}
                 if(data.longitude){$("#spacesListArticle" + id + "ContentRight").append("<p>" + data.longitude + "</p>");}
-                if(distance){$("#spacesListArticle" + id + "ContentRight").append("<p>" + distance + "</p>");}
             }
         }
 
