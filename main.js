@@ -47,14 +47,35 @@ $(document).ready(function(){
     }
 
     //add a new article to the new section
-    function mainSectionArticle_display(name, latitude, longitude, distance, id, size) {
+    function mainSectionArticle_display(data, distance, id) {
         var eSection = document.getElementById("spacesList");
         if (eSection == null) {$("#main").append("<div class='mainSection' id='spacesList'></div>");}
-        $("#spacesList").append("<div class='mainSectionArticle' id='spacesListArticle" + id + "' style='flex-grow:" + size + "'></div>");
-        $("#spacesListArticle" + id).append("<p>" + name + "</p>");
-        $("#spacesListArticle" + id).append("<p>" + latitude + "</p>");
-        $("#spacesListArticle" + id).append("<p>" + longitude + "</p>");
-        $("#spacesListArticle" + id).append("<p>" + distance + "</p>");
+        $("#spacesList").append("<div class='mainSectionArticle' id='spacesListArticle" + id + "'></div>");
+
+        if(data.name){$("#spacesListArticle" + id).append("<h2 style='background-color: rgb(250,250,250);'>" + data.name + "</h2>");}
+
+        if(data.imageFile || data.links || data.latitude || data.longitude || distance){
+            $("#spacesListArticle" + id).append("<div id='spacesListArticle" + id + "Content' style='display:flex; flex-wrap:nowrap; gap:1vw;'></div>");
+
+            if(data.imageFile || data.links) {
+                $("#spacesListArticle" + id + "Content").append("<div id='spacesListArticle" + id + "ContentLeft' style='flex-basis: 50%;'></div>");
+                if(data.imageFile){$("#spacesListArticle" + id + "ContentLeft").append("<img src='" + data.imageFile + "' style='max-width:100%;'>");}
+                if(data.links){$("#spacesListArticle" + id + "ContentLeft").append("<p>" + data.links + "</p>");}
+            }
+
+            if(data.latitude || data.longitude || distance) {
+                $("#spacesListArticle" + id + "Content").append("<div id='spacesListArticle" + id + "ContentRight' style='flex-basis: 50%;'></div>");
+                if(data.latitude){$("#spacesListArticle" + id + "ContentRight").append("<p>" + data.latitude + "</p>");}
+                if(data.longitude){$("#spacesListArticle" + id + "ContentRight").append("<p>" + data.longitude + "</p>");}
+                if(distance){$("#spacesListArticle" + id + "ContentRight").append("<p>" + distance + "</p>");}
+            }
+        }
+
+        if(data.infoFile){
+            $.get(data.infoFile, function(text){
+                $("#spacesListArticle" + id).append("<p>" + text + "</p>");
+            });
+        }
     }
 
     function getDistance(n1, n2, n3, n4) {
@@ -91,7 +112,11 @@ $(document).ready(function(){
             $("#searchField").css({"background-color":"rgba(250,250,250,1)", "color":"rgba(80, 80, 80, 1)"}); //animate to default colors if success
 
             mainSection_clear();
-            mainSectionArticle_display(postcodeData.result.postcode, postcodeData.result.longitude, postcodeData.result.latitude, 0, 0, 1);
+            mainSectionArticle_display({
+                name:postcode,
+                longitude:postcodeData.result.longitude,
+                latitude:postcodeData.result.latitude},
+                0, 0);
 
             $.getJSON("media/database/space.json", function(spaceData){
                 console.log(spaceData);
@@ -119,7 +144,7 @@ $(document).ready(function(){
                     if(distance < 0.01){
                         displayOrder.push(nodeItem);
                         if(sectionBreak == false) {$("#spacesList").append("<div class='mainSectionBreak'></div>"); sectionBreak = true;}
-                        mainSectionArticle_display(spaceData.green_space[nodeItem].name, spaceData.green_space[nodeItem].longitude, spaceData.green_space[nodeItem].latitude, nodeDist, display+1, 1);
+                        mainSectionArticle_display(spaceData.green_space[nodeItem], nodeDist, display+1, 1);
                     }
                 }
             }).fail(function(){
