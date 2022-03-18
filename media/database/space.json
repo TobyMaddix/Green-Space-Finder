@@ -20,7 +20,7 @@
 
             "infoFile" : "",
             "imageFile" : "",
-            "links" : [""],
+            "links" : "",
 
             "services" : [],
             "nearby" : []
@@ -32,7 +32,7 @@
 
             "infoFile" : "",
             "imageFile" : "",
-            "links" : [""],
+            "links" : "",
 
             "services" : [],
             "nearby" : []
@@ -44,7 +44,7 @@
 
             "infoFile" : "",
             "imageFile" : "",
-            "links" : [""],
+            "links" : "",
 
             "services" : [],
             "nearby" : []
@@ -56,7 +56,7 @@
 
             "infoFile" : "",
             "imageFile" : "",
-            "links" : [""],
+            "links" : "",
 
             "services" : [],
             "nearby" : []
@@ -68,7 +68,7 @@
 
             "infoFile" : "",
             "imageFile" : "",
-            "links" : [""],
+            "links" : "",
 
             "services" : [],
             "nearby" : []
@@ -80,7 +80,7 @@
 
             "infoFile" : "",
             "imageFile" : "",
-            "links" : [""],
+            "links" : "",
 
             "services" : [],
             "nearby" : []
@@ -92,7 +92,7 @@
 
             "infoFile" : "media/text/space/dev.txt",
             "imageFile" : "media/images/space/dev.jpg",
-            "links" : [""],
+            "links" : "",
 
             "services" : [],
             "nearby" : []
@@ -104,7 +104,7 @@
 
             "infoFile" : "",
             "imageFile" : "",
-            "links" : [""],
+            "links" : "",
 
             "services" : [],
             "nearby" : []

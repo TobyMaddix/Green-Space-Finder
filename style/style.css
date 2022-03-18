@@ -217,7 +217,8 @@ body {
 
     display: flex;
     flex-wrap: wrap;
-    gap: 1vw;
+    gap: 1.25vw;
+    align-items: flex-start;
 }
 
 .mainSectionBreak {
@@ -254,20 +255,19 @@ body {
     -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0, 1); 
     box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.8);
 
-    border-radius: 0.75em;
+    border-radius: 0.75rem;
 }
 
 .mainSectionArticle {
     flex-grow: 1;
+    flex-basis: 0;
     padding: 1.25vw;
 
     background-color: rgba(0, 0, 0, 1);
     -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.8); 
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.8);
     border: 1px solid rgba(20, 20, 20, 1);
-    border-radius: 0.75em;
-
-    flex-basis:0;
+    border-radius: 0.75rem;
 }
 
 
