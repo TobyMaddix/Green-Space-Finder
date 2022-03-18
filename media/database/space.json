@@ -5,9 +5,9 @@
             "longitude" : "-2.5872646",
             "latitude" : "51.4557259",
 
-            "infoFile" : "",
-            "imageFile" : "",
-            "links" : [""],
+            "infoFile" : "media/text/space/dev.txt",
+            "imageFile" : "media/images/space/dev.jpg",
+            "links" : "",
 
             "services" : [],
             "nearby" : []
@@ -18,8 +18,8 @@
             "longitude" : "-2.5934414",
             "latitude" : "51.4504526",
 
-            "infoFile" : "",
-            "imageFile" : "",
+            "infoFile" : "media/text/space/dev.txt",
+            "imageFile" : "media/images/space/dev.jpg",
             "links" : "",
 
             "services" : [],
@@ -30,8 +30,8 @@
             "longitude" : "-2.6004994",
             "latitude" : "51.452319",
 
-            "infoFile" : "",
-            "imageFile" : "",
+            "infoFile" : "media/text/space/dev.txt",
+            "imageFile" : "media/images/space/dev.jpg",
             "links" : "",
 
             "services" : [],
@@ -42,8 +42,8 @@
             "longitude" : "-2.5925999",
             "latitude" : "51.4583081",
 
-            "infoFile" : "",
-            "imageFile" : "",
+            "infoFile" : "media/text/space/dev.txt",
+            "imageFile" : "media/images/space/dev.jpg",
             "links" : "",
 
             "services" : [],
@@ -54,8 +54,8 @@
             "longitude" : "-2.5954086",
             "latitude" : "51.4566302",
 
-            "infoFile" : "",
-            "imageFile" : "",
+            "infoFile" : "media/text/space/dev.txt",
+            "imageFile" : "media/images/space/dev.jpg",
             "links" : "",
 
             "services" : [],
@@ -66,8 +66,8 @@
             "longitude" : "-2.5895861",
             "latitude" : "51.4479312",
 
-            "infoFile" : "",
-            "imageFile" : "",
+            "infoFile" : "media/text/space/dev.txt",
+            "imageFile" : "media/images/space/dev.jpg",
             "links" : "",
 
             "services" : [],
@@ -78,8 +78,8 @@
             "longitude" : "-2.5860931",
             "latitude" : "51.451596",
 
-            "infoFile" : "",
-            "imageFile" : "",
+            "infoFile" : "media/text/space/dev.txt",
+            "imageFile" : "media/images/space/dev.jpg",
             "links" : "",
 
             "services" : [],
@@ -102,8 +102,8 @@
             "longitude" : "-2.5924819",
             "latitude" : "51.453317",
 
-            "infoFile" : "",
-            "imageFile" : "",
+            "infoFile" : "media/text/space/dev.txt",
+            "imageFile" : "media/images/space/dev.jpg",
             "links" : "",
 
             "services" : [],

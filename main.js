@@ -50,30 +50,24 @@ $(document).ready(function(){
     function mainSectionArticle_display(data, distance, id) {
         var eSection = document.getElementById("spacesList");
         if (eSection == null) {$("#main").append("<div class='mainSection' id='spacesList'></div>");}
-        $("#spacesList").append("<div class='mainSectionArticle' id='spacesListArticle" + id + "'></div>");
-
-        if(data.name){$("#spacesListArticle" + id).append("<h2 style='background-color: rgb(250,250,250);'>" + data.name + "</h2>");}
-
-        if(data.imageFile || data.links || data.latitude || data.longitude || distance){
-            $("#spacesListArticle" + id).append("<div id='spacesListArticle" + id + "Content' style='display: flex; flex-wrap: wrap; gap: 1vw;'></div>");
-
-            if(data.imageFile || data.links) {
-                $("#spacesListArticle" + id + "Content").append("<div id='spacesListArticle" + id + "ContentLeft' style='flex-basis: 1;'></div>");
-                if(data.imageFile){$("#spacesListArticle" + id + "ContentLeft").append("<img src='" + data.imageFile + "' style='width: 100%;'>");}
-                if(data.links){$("#spacesListArticle" + id + "ContentLeft").append("<p>" + data.links + "</p>");}
-            }
-
-            if(distance || data.latitude || data.longitude) {
-                $("#spacesListArticle" + id + "Content").append("<div id='spacesListArticle" + id + "ContentRight' style='flex-basis: 1;'></div>");
-                if(distance){$("#spacesListArticle" + id + "ContentRight").append("<p>" + distance + "</p>");}
-                if(data.latitude){$("#spacesListArticle" + id + "ContentRight").append("<p>" + data.latitude + "</p>");}
-                if(data.longitude){$("#spacesListArticle" + id + "ContentRight").append("<p>" + data.longitude + "</p>");}
-            }
+        
+        if(data.imageFile){
+            //set background as image and increase header margin
+            $("#spacesList").append("<div class='mainSectionArticle' id='spacesListArticle" + id + "' style='background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(20, 20, 20, 01) 60%, rgba(20, 20, 20, 01) 100%), url(" + data.imageFile + "); background-position: center; background-repeat: no-repeat; background-size: cover;'></div>");
+            if(data.name){$("#spacesListArticle" + id).append("<h2 style='margin-top: 60%; margin-bottom: 1.5vh; border-radius: 0.25rem; background-color: rgb(250,250,250);'>" + data.name + "</h2>");}
+        }else{
+            //no image as background and normal header margin
+            $("#spacesList").append("<div class='mainSectionArticle' id='spacesListArticle" + id + "'></div>");
+            if(data.name){$("#spacesListArticle" + id).append("<h2 style='margin-top: 1.5vh; margin-bottom: 1.5vh; border-radius: 0.25rem; background-color: rgb(250,250,250);'>" + data.name + "</h2>");}
         }
-
+        if(distance){$("#spacesListArticle" + id).append("<p margin-top: 0; margin-bottom: 0.5vh;'>" + distance + "</p>");}
+        if(data.links){
+            $("#spacesListArticle" + id).append("<div id='spacesListArticle" + id + "Links' style='display: flex; flex-wrap: wrap; gap: 1vw;'></div>");
+            $("#spacesListArticle" + id + "Links").append("<p>" + data.links + "</p>");
+        }
         if(data.infoFile){
             $.get(data.infoFile, function(text){
-                $("#spacesListArticle" + id).append("<p>" + text + "</p>");
+                $("#spacesListArticle" + id).append("<p style='margin-top: 0.5vh; margin-bottom: 1vh;'>" + text + "</p>");
             });
         }
     }
@@ -127,8 +121,9 @@ $(document).ready(function(){
                 var nodeDist;
                 var distance;
                 var sectionBreak = false;
+                
                 //run through the green space data base
-                for(var display = 0; 5 > display; display++) {
+                for(var display = 0; 6 > display; display++) {
                     var nodeItem = 0;
                     var nodeDist = getDistance(postcodeData.result.longitude, postcodeData.result.latitude, spaceData.green_space[0].longitude, spaceData.green_space[0].latitude);
                     for(var i = 0; spaceData.green_space.length > i; i++) {
@@ -169,5 +164,5 @@ $(document).ready(function(){
         if(keycode == '13'){
             getSpaces();
         }
-      });
+    });
 });
