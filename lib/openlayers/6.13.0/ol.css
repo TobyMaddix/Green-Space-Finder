@@ -78,6 +78,7 @@
 
 .ol-viewport canvas{
     all:unset;
+    border-radius: 0.5rem;
 }
 
 .ol-selectable{
@@ -196,13 +197,14 @@
 
 .ol-attribution{
     text-align:right;
-    bottom:.5em;right:.5em;
+    bottom:.5em;
+    right:.5em;
     max-width:calc(100% - 1.3em);
-    display:flex;
+    display:none;
     flex-flow:row-reverse;
     align-items:center;
 }
-    
+
 .ol-attribution a{
     color:rgba(0,60,136,.7);
     text-decoration:none;
@@ -312,4 +314,3 @@
 .ol-overviewmap .ol-overviewmap-box:hover{
     cursor:move;
 }
-/*# sourceMappingURL=ol.css.map */
