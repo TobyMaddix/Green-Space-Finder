@@ -179,11 +179,11 @@ body {
 
 
 #navCont {
+    z-index: 1;
     width: 100%;
     float: left;
 
     position: sticky;
-    z-index: 0;
     top: 0;
     
     background-color: rgba(250, 250, 250, 1);
@@ -228,24 +228,6 @@ body {
     border-bottom: 1px solid rgba(250, 250, 250, 0.2);
 }
 
-.mainSectionLowerhalf {
-    width: 100%;
-    margin-bottom: -1.25vw;
-    margin-left: -1.25vw;
-
-    padding: 1.25vw;
-
-    background-color: rgba(250, 250, 250, 1);
-
-    border-bottom-left-radius: 0.60em;
-    border-bottom-right-radius: 0.60em;
-}
-
-.mainSectionLowerhalf h4 {
-    margin: 0%;
-    width: 100%;
-}
-
 .mainSectionSearch {
     width: 100%;
     padding: 1.25vw;
@@ -256,6 +238,24 @@ body {
     box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.8);
 
     border-radius: 0.75rem;
+}
+
+.mainSectionSearchLowerhalf {
+    width: 100%;
+    margin-bottom: -1.25vw;
+    margin-left: -1.25vw;
+
+    padding: 1.25vw;
+
+    background-color: rgba(250, 250, 250, 1);
+
+    border-bottom-left-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
+}
+
+.mainSectionLowerhalf h4 {
+    margin: 0%;
+    width: 100%;
 }
 
 .mainSectionArticle {
@@ -270,6 +270,21 @@ body {
     border-radius: 0.75rem;
 }
 
+.spacesListArticleTitle {
+    border-radius: 0.25rem;
+
+    background-color: rgb(250,250,250);
+}
+
+#spacesListArticleMap {
+    z-index: 0;
+    margin-top: 1.5vh;
+    margin-bottom: 1.5vh;
+
+    border-radius: 0.5rem;
+
+    background-color: rgb(250,250,250);
+}
 
 #searchCont {
     width: 100%;

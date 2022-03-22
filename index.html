@@ -5,7 +5,11 @@
 
     <link rel="stylesheet" href="style/style.css">
 
+    <!--dependencies-->
     <script src="lib/jquery/3.6.0/jquery.js"></script>
+    <script src="lib/openlayers/6.13.0/ol.js"></script>
+    <link rel="stylesheet" href="lib/openlayers/6.13.0/ol.css">
+
     <script src="main.js"></script>
 </head>
 
@@ -21,13 +25,13 @@
                     <input id="searchButton" type="button" value=" Find! ">
                 </div>
                 <p>Welcome to Bristol Green Spaces. Enter a location and we'll find nearby green spaces at a walkable distance.<br>Only BS1 has been covered so far.</p>
-                <div class="mainSectionLowerhalf">
+                <div class="mainSectionSearchLowerhalf">
                     <h2>Stats:</h2>
-                    <div style="display: flex;">
-                        <h4 id="statsListed">Listed Spaces - 0</h4>
-                        <h4 id="statsComplete">Complete - 0</h4>
-                        <h4 id="statsDetailed">Detailed - 0</h4>
-                        <h4 id="statsBasic">Basic - 0</h4>
+                    <div style="display: flex; flex-wrap: wrap; gap: 1.25vw;">
+                        <h4 id="statsListed" style="flex-grow: 1;">Listed Spaces - 0</h4>
+                        <h4 id="statsComplete" style="flex-grow: 1;">Complete - 0</h4>
+                        <h4 id="statsDetailed" style="flex-grow: 1;">Detailed - 0</h4>
+                        <h4 id="statsBasic" style="flex-grow: 1;">Basic - 0</h4>
                     </div>
                 </div>
             </div>
