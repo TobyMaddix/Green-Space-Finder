@@ -54,11 +54,11 @@ $(document).ready(function(){
         if(data.imageFile){
             //set background as image and increase header margin
             $("#spacesList").append("<div class='mainSectionArticle' id='spacesListArticle" + id + "' style='background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(20, 20, 20, 01) 60%, rgba(20, 20, 20, 01) 100%), url(" + data.imageFile + "); background-position: center; background-repeat: no-repeat; background-size: cover;'></div>");
-            if(data.name){$("#spacesListArticle" + id).append("<h2 style='margin-top: 60%; margin-bottom: 1.5vh; border-radius: 0.25rem; background-color: rgb(250,250,250);'>" + data.name + "</h2>");}
+            if(data.name){$("#spacesListArticle" + id).append("<h2 class='spacesListArticleTitle' style='margin-top: 60%; margin-bottom: 1.5vh;'>" + data.name + "</h2>");}
         }else{
             //no image as background and normal header margin
             $("#spacesList").append("<div class='mainSectionArticle' id='spacesListArticle" + id + "'></div>");
-            if(data.name){$("#spacesListArticle" + id).append("<h2 style='margin-top: 1.5vh; margin-bottom: 1.5vh; border-radius: 0.25rem; background-color: rgb(250,250,250);'>" + data.name + "</h2>");}
+            if(data.name){$("#spacesListArticle" + id).append("<h2 class='spacesListArticleTitle' style='margin-top: 1.5vh; margin-bottom: 1.5vh;'>" + data.name + "</h2>");}
         }
         if(distance){$("#spacesListArticle" + id).append("<p margin-top: 0; margin-bottom: 0.5vh;'>" + distance + "</p>");}
         if(data.links){
@@ -111,6 +111,21 @@ $(document).ready(function(){
                 longitude:postcodeData.result.longitude,
                 latitude:postcodeData.result.latitude},
                 0, 0);
+            
+            //open layer map
+            $("#spacesListArticle0").append("<div id='spacesListArticleMap' style='width: 100%; height: 30vh;'></div>");
+            var olMap = new ol.Map({
+                target: "spacesListArticleMap",
+                layers: [
+                  new ol.layer.Tile({
+                    source: new ol.source.OSM()
+                  })
+                ],
+                view: new ol.View({
+                  center: ol.proj.fromLonLat([postcodeData.result.longitude, postcodeData.result.latitude]),
+                  zoom: 16
+                })
+              });
 
             $.getJSON("media/database/space.json", function(spaceData){
                 console.log(spaceData);
@@ -138,7 +153,7 @@ $(document).ready(function(){
                     }
                     if(distance < 0.01){
                         displayOrder.push(nodeItem);
-                        if(sectionBreak == false) {$("#spacesList").append("<div class='mainSectionBreak'></div>"); sectionBreak = true;}
+                        if(sectionBreak == false) {$("#spacesList").append("<div class='mainSectionBreak'></div>"); sectionBreak = true;} //make divide in conmtent but only once
                         mainSectionArticle_display(spaceData.green_space[nodeItem], nodeDist, display+1, 1);
                     }
                 }
