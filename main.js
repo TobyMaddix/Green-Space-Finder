@@ -151,7 +151,7 @@ $(document).ready(function(){
                             nodeDist = distance;
                         }
                     }
-                    if(distance < 0.01){
+                    if(distance < 0.03){
                         displayOrder.push(nodeItem);
                         if(sectionBreak == false) {$("#spacesList").append("<div class='mainSectionBreak'></div>"); sectionBreak = true;} //make divide in conmtent but only once
                         mainSectionArticle_display(spaceData.green_space[nodeItem], nodeDist, display+1, 1);
