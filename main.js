@@ -24,9 +24,9 @@ $(document).ready(function()
         {
             console.log(data);
             console.log("SUCCESS! " + data.status);
-            console.log(data.result[1].postcode);
+            console.log(data.result[0].postcode);
 
-            $("#searchField").val(data.result[1].postcode);
+            $("#searchField").val(data.result[0].postcode);
         }).fail(function(data)
         {
             console.log(data);
