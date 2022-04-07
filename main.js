@@ -1,24 +1,8 @@
 const devMode = true;
 
-$(document).ready(function(){
-    if(devMode) {
-        $("#searchField").val("BS16NE");
-        getSpaces();
-    }
-
-
-    function getStats(statsData) {
-        $.getJSON(statsData, function(data){
-            $("#statsListed").text("Listed Spaces - " + data.dev_stats.spaces_listed);
-            $("#statsComplete").text("Complete - " + data.dev_stats.spaces_complete);
-            $("#statsDetailed").text("Detailed - " + data.dev_stats.spaces_detailed);
-            $("#statsBasic").text("Basic - " + data.dev_stats.spaces_basic);
-        });
-    }
-
-    getStats("media/database/stats.json");
-
-
+$(document).ready(function()
+{
+    /* Get postcode from location */
     function getPostcode(position) {
         const latlongUrl = "https://api.postcodes.io/postcodes?lon=" + position.coords.longitude + "&lat=" + position.coords.latitude; //find nearest postcode to estimated position
 
@@ -41,12 +25,36 @@ $(document).ready(function(){
     });
 
     
-    //remove any content from the main section
+    /* Update GUI */
     function mainSection_clear() {
         $("#spacesList").remove();
     }
 
-    //add a new article to the new section
+    function mainSection_map(postcode, postcodeData) {
+        mainSection_clear();
+        mainSectionArticle_display({
+            name:postcode,
+            longitude:postcodeData.result.longitude,
+            latitude:postcodeData.result.latitude},
+            0, 0);
+        
+        //open layer map
+        $("#spacesListArticle0").append("<div id='spacesListArticleMap' style='width: 100%; height: 30vh;'></div>");
+        var olMap = new ol.Map({
+            target: "spacesListArticleMap",
+            layers: [
+              new ol.layer.Tile({
+                source: new ol.source.OSM()
+              })
+            ],
+            view: new ol.View({
+              center: ol.proj.fromLonLat([postcodeData.result.longitude, postcodeData.result.latitude]),
+              zoom: 16
+            })
+          });
+    }
+
+    //show search result
     function mainSectionArticle_display(data, distance, id) {
         var eSection = document.getElementById("spacesList");
         if (eSection == null) {$("#main").append("<div class='mainSection' id='spacesList'></div>");}
@@ -72,6 +80,8 @@ $(document).ready(function(){
         }
     }
 
+
+    /* Search site database */
     function getDistance(n1, n2, n3, n4) {
         function makePosative(n) {
             if(n < 0) {var num1 = n - (n * 2);} else {var num1 = n;}
@@ -105,27 +115,7 @@ $(document).ready(function(){
 
             $("#searchField").css({"background-color":"rgba(250,250,250,1)", "color":"rgba(80, 80, 80, 1)"}); //animate to default colors if success
 
-            mainSection_clear();
-            mainSectionArticle_display({
-                name:postcode,
-                longitude:postcodeData.result.longitude,
-                latitude:postcodeData.result.latitude},
-                0, 0);
-            
-            //open layer map
-            $("#spacesListArticle0").append("<div id='spacesListArticleMap' style='width: 100%; height: 30vh;'></div>");
-            var olMap = new ol.Map({
-                target: "spacesListArticleMap",
-                layers: [
-                  new ol.layer.Tile({
-                    source: new ol.source.OSM()
-                  })
-                ],
-                view: new ol.View({
-                  center: ol.proj.fromLonLat([postcodeData.result.longitude, postcodeData.result.latitude]),
-                  zoom: 16
-                })
-              });
+            mainSection_map(postcode, postcodeData);
 
             $.getJSON("media/database/space.json", function(spaceData){
                 console.log(spaceData);
@@ -168,6 +158,24 @@ $(document).ready(function(){
             $("#searchField").css({"background-color":"rgba(200,60,40,1)", "color":"white"}); //animate color change to show fail
             mainSection_clear();
         });
+    }
+
+    /* Update website stats */
+    function getStats(statsData) {
+        $.getJSON(statsData, function(data){
+            $("#statsListed").text("Listed Spaces - " + data.dev_stats.spaces_listed);
+            $("#statsComplete").text("Complete - " + data.dev_stats.spaces_complete);
+            $("#statsDetailed").text("Detailed - " + data.dev_stats.spaces_detailed);
+            $("#statsBasic").text("Basic - " + data.dev_stats.spaces_basic);
+        });
+    }
+
+    getStats("media/database/stats.json");
+
+    /* User inputs */
+    if(devMode) {
+        $("#searchField").val("BS16NE");
+        getSpaces();
     }
 
     $("#searchButton").click(function(){
